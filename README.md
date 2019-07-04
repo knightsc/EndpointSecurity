@@ -23,7 +23,3 @@ guard res == ES_NEW_CLIENT_RESULT_SUCCESS else {
 ```shell
 swiftc -I ./EndpointSecurity test.swift -lEndpointSecurity
 ```
-
-# Usefulness?
-
-Unfortunately this isn't actually that useful. Swift [can't call variadic C](https://developer.apple.com/documentation/swift/imported_c_and_objective-c_apis/using_imported_c_functions_in_swift) functions unless they use the `va_list` arguement type. Unfortunately the `es_subscribe` function simply uses the `...` notation. So while you can import this module and create a new client you can't actually subscribe to any events. For now at least the best way to use the Endpoint Security framework in Swift code is to create an Objective-C class and a bridging header.
